@@ -26,7 +26,7 @@ if (isset($url)) {
     $file = FILE_XML;
     $xml = simplexml_load_file($file);
 }
-
+//die();
 
 //primo insert che dovra includere piu file xml.. forse
 //Now, insert/update - USE MySQL's "INSERT ... ON DUPLICATE UPDATE" feature
@@ -62,19 +62,72 @@ foreach ($xml->annuncio as $an) {
         $immag[(string) $imm] = (string) $imm;
     }
 
-
-
-    
     //che figata sto ON DUPLICATE KEY UPDATE non lo conoscevo
     $sql = 'INSERT INTO `annunci` '
-            . '(`rif`, `provincia`, `comune`, `cap`, `indirizzo`, `contratto`, `categoria`, `tipologia`, `descrizione`, `prezzo`, `spesecondominialianno`, `spesecondominialimese`, `trattativariservata`, `riscaldamento`, `giardinoprivato`, `giardinocondominiale`, `numerobagni`, `annocostruzione`, `condizioni`, `garage`, `piano`, `classe_energetica`, `ipe`, `latitudine`, `longitudine`, `scroll`, `inevidenza`, `notepubbliche`, `immagini`) VALUES '
-            . '("' . $an->riferimento . '", "' . $an->provincia . '", "' . $an->comune . '", "' . $an->cap . '", "' . $an->indirizzo . '", "' . $an->contratto . '", "' . $an->categoria . '", "' . $an->tipologia . '", "' . $an->descrizione . '", "' . $an->prezzo . '", "' . $an->spesecondominialianno . '", "' . $an->spesecondominialimese . '", "' . $an->trattativariservata . '", "' . $an->riscaldamento . '", "' . $an->giardinoprivato . '", "' . $an->giardinocondominiale . '", "' . $an->numerobagni . '", "' . $an->annocostruzione . '", "' . $an->condizioni . '", "' . $an->garage . '", "' . $an->piano . '", "' . $an->classe_energetica . '", "' . $an->ipe . '",'
-            . ' "' . $an->latitudine . '", "' . $an->longitudine . '", "' . $an->scroll . '", "' . $an->inevidenza . '", "' . $an->notepubbliche . '", "' . $an->immagini . '") '
+            . '(`rif`, '
+            . '`provincia`, '
+            . '`comune`, '
+            . '`cap`, '
+            . '`indirizzo`, '
+            . '`contratto`, '
+            . '`categoria`, '
+            . '`tipologia`, '
+            . '`descrizione`, '
+            . '`prezzo`, '
+            . '`spesecondominialianno`, '
+            . '`spesecondominialimese`, '
+            . '`trattativariservata`, '
+            . '`riscaldamento`, '
+            . '`giardinoprivato`, '
+            . '`giardinocondominiale`, '
+            . '`numerobagni`, '
+            . '`annocostruzione`, '
+            . '`condizioni`, '
+            . '`garage`, '
+            . '`piano`, '
+            . '`classe_energetica`, '
+            . '`ipe`, '
+            . '`latitudine`, '
+            . '`longitudine`, '
+            . '`scroll`, '
+            . '`inevidenza`, '
+            . '`notepubbliche`, '
+            . '`immagini`) VALUES '
+            . '("'. $an->riferimento . '", '
+            . '"' . $an->provincia . '", '
+            . '"' . $an->comune . '", '
+            . '"' . $an->cap . '", '
+            . '"' . $an->indirizzo . '", '
+            . '"' . $an->contratto . '", '
+            . '"' . $an->categoria . '", '
+            . '"' . $an->tipologia . '", '
+            . '"' . $an->descrizione . '", '
+            . '"' . $an->prezzo . '", '
+            . '"' . $an->spesecondominialianno . '", '
+            . '"' . $an->spesecondominialimese . '", '
+            . '"' . $an->trattativariservata . '", '
+            . '"' . $an->riscaldamento . '", '
+            . '"' . $an->giardinoprivato . '", '
+            . '"' . $an->giardinocondominiale . '", '
+            . '"' . $an->numerobagni . '", '
+            . '"' . $an->annocostruzione . '", '
+            . '"' . $an->condizioni . '", '
+            . '"' . $an->garage . '", '
+            . '"' . $an->piano . '", '
+            . '"' . $an->classe_energetica . '", '
+            . '"' . $an->ipe . '",'
+            . '"' . $an->latitudine . '", '
+            . '"' . $an->longitudine . '", '
+            . '"' . $an->scroll . '", '
+            . '"' . $an->inevidenza . '", '
+            . '"' . $an->notepubbliche . '", '
+            . '"' . $an->immagini . '") '
             . 'ON DUPLICATE KEY UPDATE provincia="' . $an->provincia . '", comune ="' . $an->comune . '",cap="' . $an->cap . '", indirizzo ="' . $an->indirizzo . '",contratto="' . $an->contratto . '", categoria ="' . $an->categoria . '",tipologia="' . $an->tipologia . '", descrizione ="' . $an->descrizione . '",prezzo="' . $an->prezzo . '", spesecondominialianno ="' . $an->spesecondominialianno . '", spesecondominialimese ="' . $an->spesecondominialimese . '", trattativariservata ="' . $an->trattativariservata . '", '
             . 'riscaldamento ="' . $an->riscaldamento . '", giardinoprivato ="' . $an->giardinoprivato . '", giardinocondominiale ="' . $an->giardinocondominiale . '", numerobagni ="' . $an->numerobagni . '", annocostruzione ="' . $an->annocostruzione . '", condizioni ="' . $an->condizioni . '", garage ="' . $an->garage . '", piano ="' . $an->piano . '", classe_energetica ="' . $an->classe_energetica . '", ipe ="' . $an->ipe . '", latitudine ="' . $an->latitudine . '", longitudine ="' . $an->longitudine . '", scroll ="' . $an->scroll . '",'
             . ' inevidenza ="' . $an->inevidenza . '", notepubbliche ="' . $an->notepubbliche . '", immagini ="' . implode("#", array_keys($immag)) . '"';
 
     echo $sql . "<hr>";
+    
     $result = $conn->query($sql);
 }
 

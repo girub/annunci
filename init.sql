@@ -21,9 +21,6 @@
 
 # Dump of table annunci
 # ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `annunci`;
-
 CREATE TABLE `annunci` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `rif` varchar(11) DEFAULT NULL,
@@ -39,14 +36,14 @@ CREATE TABLE `annunci` (
   `spesecondominialianno` int(11) DEFAULT NULL,
   `spesecondominialimese` int(11) DEFAULT NULL,
   `trattativariservata` int(11) DEFAULT NULL,
-  `riscaldamento` int(11) DEFAULT NULL,
+  `riscaldamento` varchar(255) DEFAULT NULL,
   `giardinoprivato` varchar(255) DEFAULT NULL,
   `giardinocondominiale` varchar(255) DEFAULT NULL,
   `numerobagni` int(11) DEFAULT NULL,
   `annocostruzione` int(11) DEFAULT NULL,
-  `condizioni` int(11) DEFAULT NULL,
-  `garage` int(11) DEFAULT NULL,
-  `piano` int(11) DEFAULT NULL,
+  `condizioni` varchar(255) DEFAULT NULL,
+  `garage` varchar(255) DEFAULT NULL,
+  `piano` varchar(255) DEFAULT NULL,
   `classe_energetica` varchar(10) DEFAULT NULL,
   `ipe` varchar(10) DEFAULT NULL,
   `latitudine` varchar(255) DEFAULT NULL,
@@ -58,7 +55,7 @@ CREATE TABLE `annunci` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `unique_rif` (`rif`),
   KEY `index_rif` (`rif`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=41 DEFAULT CHARSET=utf8;
 
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
